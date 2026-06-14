@@ -1,0 +1,20 @@
+---
+description: MCP Bastion gateway mandatory — bastion.yaml policy-as-code
+globs:
+alwaysApply: true
+---
+
+# Bastion Gateway Required
+
+MCP config must wrap the server:
+
+```json
+{
+  "command": "python",
+  "args": ["-m", "agent.bastion_proxy", "--", "python", "-m", "agent.mcp_server"]
+}
+```
+
+- Policy: `bastion.yaml` — Presidio PII, PromptGuard, rate limits, RBAC
+- Validate: `mcp-bastion validate --config bastion.yaml`
+- Skill: `mcp-bastion-security-gateway`

@@ -1,0 +1,13 @@
+---
+description: Zero-trust identity — IdentityManager, ephemeral credentials, 7 clouds
+globs:
+alwaysApply: true
+---
+
+# Zero-Trust Identity
+
+- Use `security.get_identity_manager()` — auto-detects cloud runtime
+- AWS: IRSA / instance profile · Azure: managed identity · GCP: Workload Identity
+- OCI: resource principal · IBM: Trusted Profile · Alibaba: ECS RAM role · PCF: UAA + CredHub
+- Secrets in vault services only — never in git, Dockerfile, or MCP tool args
+- Skill: `zero-trust-identity-and-secrets`

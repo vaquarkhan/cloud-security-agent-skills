@@ -1,0 +1,13 @@
+---
+description: Cloud Security Agent core — security-only repo, load skills from skills/, no static secrets
+globs:
+alwaysApply: true
+---
+
+# Cloud Security Agent — Core
+
+- This is a **security-only** repository — not data engineering
+- Load skills from local `skills/` only — start with `using-cloud-security-agent-skills`
+- **Never** use static API keys, passwords, or long-lived tokens
+- All MCP clients **must** use `agent.bastion_proxy` — never raw `agent.mcp_server`
+- Run validators before PR: `python scripts/validate-skills.py`, `mcp-bastion validate`

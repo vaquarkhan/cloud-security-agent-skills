@@ -1,0 +1,20 @@
+---
+description: Route to correct cloud skill and Well-Architected framework
+globs:
+alwaysApply: true
+---
+
+# Cloud & WAF Routing
+
+| Cloud | Skill |
+|-------|-------|
+| AWS | `aws-security-best-practices` |
+| Azure | `azure-security-best-practices` |
+| GCP | `gcp-security-best-practices` |
+| OCI | `oci-oracle-cloud-security` |
+| IBM / Bluemix | `ibm-cloud-security-best-practices` |
+| Alibaba | `alibaba-cloud-security-best-practices` |
+| PCF / Tanzu | `vmware-tanzu-pcf-security` |
+| Hybrid / WAF | `cloud-well-architected-frameworks` + `multi-cloud-security-posture` |
+
+Each cloud skill covers IAM → KMS → network → logging → compliance end-to-end.
