@@ -21,6 +21,7 @@ Execute **multi-cloud security** assessments and hardening using **local skills 
 |--------|---------------|
 | Session start | `using-cloud-security-agent-skills` |
 | Well-Architected / WAF review (all clouds) | `cloud-well-architected-frameworks` |
+| Validate skills / assets | `python scripts/validate-skills.py`, `python scripts/validate-assets.py` |
 | Identity / secrets | `zero-trust-identity-and-secrets` |
 | AWS | `aws-security-best-practices` |
 | Azure | `azure-security-best-practices` |

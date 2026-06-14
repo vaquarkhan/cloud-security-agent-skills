@@ -1,6 +1,6 @@
 # Folder structure
 
-Canonical map of **cloud-security-agent-skills** — what each directory and key file is for. Use this when onboarding, extending the agent, or wiring CI.
+Canonical map of **cloud-security-agent-skills** — v0.1.0.
 
 ---
 
@@ -8,61 +8,56 @@ Canonical map of **cloud-security-agent-skills** — what each directory and key
 
 ```
 cloud-security-agent-skills/
-├── agent/                          # Data Engineering Agent core + MCP surfaces
-│   ├── __init__.py                 # Public exports: BastionGateway, DataEngineeringAgent
-│   ├── orchestrator.py             # DataEngineeringAgent — introspection, skills, posture
-│   ├── bastion_gateway.py          # BastionGateway — policy load, MCP launch argv
-│   ├── bastion_proxy.py            # Stdio MCP proxy (agent → Bastion → upstream server)
-│   ├── bastion_wrapper.py          # In-process Bastion checks on FastMCP tool handlers
-│   ├── skills_loader.py            # Loads workflow skills from data-engineering-agent-skills
-│   ├── harness_cli.py              # mcp-test-harness CLI shim (stdio --suite security)
-│   └── mcp_server/                 # Bastion-protected MCP tool server (STDIO)
-│       ├── __init__.py
-│       └── __main__.py             # echo, plan_pipeline, validate_data_contract tools
+├── skills/                         # 14 local security skills (SKILL.md each)
+│   ├── using-cloud-security-agent-skills/
+│   ├── cloud-well-architected-frameworks/
+│   ├── zero-trust-identity-and-secrets/
+│   ├── multi-cloud-security-posture/
+│   ├── aws-security-best-practices/
+│   ├── azure-security-best-practices/
+│   ├── gcp-security-best-practices/
+│   ├── oci-oracle-cloud-security/
+│   ├── ibm-cloud-security-best-practices/
+│   ├── alibaba-cloud-security-best-practices/
+│   ├── vmware-tanzu-pcf-security/
+│   ├── mcp-bastion-security-gateway/
+│   ├── mcp-security-testing-harness/
+│   └── pr-integrity-aiv-gate/
 │
-├── security/                       # Zero-trust multi-cloud identity abstraction
-│   ├── __init__.py                 # CloudCredentials, detect_cloud_environment, get_identity_manager
-│   ├── base.py                     # IdentityManager ABC + token lifecycle
-│   ├── introspection.py            # CloudEnvironment detection + manager routing
-│   ├── aws.py                      # AWSCredentialChainManager (boto3 default chain)
-│   ├── azure.py                    # AzureDefaultCredentialManager
-│   ├── gcp.py                      # GCPDefaultCredentialManager (ADC)
-│   ├── oci.py                      # OCIResourcePrincipalManager + Vault client
-│   ├── ibm.py                      # IBMTrustedProfileManager (TRUSTED_PROFILE_NAME)
-│   ├── alibaba.py                  # AlibabaRAMRoleManager (ram_role_arn STS refresh)
-│   └── pcf.py                      # PCFCredHubManager (VCAP_SERVICES / UAA OAuth2)
-│
-├── tests/
-│   ├── unit/                       # Fast pytest — no MCP subprocess, no cloud SDKs
-│   │   └── test_identity_and_gateway.py
-│   └── integration/                # mcp-test-harness — STDIO MCP server tests
-│       └── test_mcp_integration.py # @pytest.mark.protocol | @pytest.mark.security
-│
-├── docs/                           # Setup, architecture, and structure guides
-│   ├── folder-structure.md         # This file
-│   ├── architecture.md             # Threat model + data flow
-│   ├── getting-started.md          # First-run walkthrough
-│   ├── project-status.md           # Feature list and roadmap
-│   ├── identity-layer.md           # Per-cloud IdentityManager reference
-│   ├── bastion-policy.md           # bastion.yaml tuning guide
-│   └── testing.md                  # mcp-test-harness + CI commands
-│
-├── .aiv/                           # AIV integrity gate (PR validation)
-│   ├── config.yaml                 # Density, design, dependency, invariant gates
-│   └── design-rules.yaml         # Forbidden patterns (API keys, direct MCP bypass)
-│
-├── .github/
-│   └── workflows/
-│       └── ci.yml                  # Unit, Bastion validate, MCP harness, AIV gate
-│
-├── bastion.yaml                    # MCP-Bastion policy-as-code (PromptGuard, PII, rate limits)
-├── mcp-test.yaml                   # mcp-test-harness config (server command, timeouts)
-├── pyproject.toml                  # Package metadata, extras, pytest markers, entry points
-├── requirements.txt                # Pinned runtime + test + cloud SDK deps
-├── .cursorrules                    # Cursor AI rules — bans static secrets in generated code
-├── .env.example                    # Safe env var template (no real values)
-├── AGENTS.md                       # Agent entry + skill routing (read first)
-└── README.md                       # Project overview + quick links
+├── security/                       # Zero-trust IdentityManager (7 clouds)
+├── agent/                          # CloudSecurityAgent, Bastion, MCP server
+├── presets/                        # Per-cloud WAF/security presets (8)
+├── starter-packs/                  # YAML starter bundles (4)
+├── examples/mock-posture-check/    # Runnable mock posture demo
+├── scripts/
+│   ├── validate-skills.py          # Skill frontmatter + structure validator
+│   └── validate-assets.py          # registry/assets.json path validator
+├── evals/benchmark/                # Reproducible skill-routing benchmark
+├── registry/
+│   ├── assets.json                 # Machine-readable index (schema v2)
+│   └── provenance.yaml             # SME source trail for checklists
+├── tests/unit/                     # 8 unit tests
+├── tests/integration/              # MCP protocol + security tests
+├── docs/                           # Architecture, testing, getting started
+├── .aiv/                           # AIV PR integrity gate
+├── .github/workflows/              # CI, CodeQL
+├── .claude/commands/               # Claude Code slash commands
+├── .gemini/commands/               # Gemini command surfaces
+├── .kiro/steering/                 # Kiro steering rules
+├── bastion.yaml                    # MCP-Bastion policy-as-code
+├── mcp-test.yaml                   # MCP test harness config
+├── LICENSE                         # MIT
+├── VERSION                         # Canonical version (0.1.0)
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── SECURITY.md
+├── CODE_OF_CONDUCT.md
+├── SUPPORT.md
+├── CLAUDE.md                       # Claude Code entry
+├── AGENTS.md                       # Agent routing (read first)
+├── skills-index.md
+├── requirements-lock.txt
+└── .pre-commit-config.yaml
 ```
 
 ---
@@ -71,59 +66,24 @@ cloud-security-agent-skills/
 
 | Path | Responsibility |
 |------|----------------|
-| `security/` | Autonomous short-lived credential lifecycle; **no static API keys** |
-| `agent/orchestrator.py` | Cloud introspection, skill bundle load, security posture pre-flight |
-| `agent/bastion_gateway.py` | Single entry for Bastion policy; agents **must not** bypass this |
-| `agent/bastion_proxy.py` | Process-level stdio proxy between IDE/agent and upstream MCP |
-| `agent/bastion_wrapper.py` | Tool-level inbound (injection, denylist) + outbound (Presidio) checks |
-| `agent/skills_loader.py` | Progressive load of `data-engineering-agent-skills` workflows |
-| `agent/mcp_server/` | Reference MCP server for pipeline plan / contract validation tools |
-| `bastion.yaml` | Production security posture — review PII entities before deploy |
-| `tests/unit/` | Identity routing, gateway argv, skills stubs |
-| `tests/integration/` | MCP protocol conformance + adversarial/PII security suite |
-| `.aiv/` | PR gate — logic density, YAML design rules, invariants |
+| `security/` | Ephemeral credential lifecycle — **no static API keys** |
+| `agent/orchestrator.py` | Cloud introspection, skill load, posture pre-flight |
+| `agent/bastion_proxy.py` | Stdio MCP proxy — security gateway hop |
+| `agent/skills_loader.py` | Local `skills/` discovery and core bundle |
+| `scripts/validate-skills.py` | CI skill validator |
+| `registry/assets.json` | Paths, presets, examples, install surfaces |
+| `registry/provenance.yaml` | Checklist SME provenance |
 
 ---
 
-## External skill dependency
+## Entry points
 
-Workflow skills are **not vendored** in this repo. Clone separately and point `SKILLS_PATH`:
-
-```
-vendor/data-engineering-agent-skills/
-└── skills/
-    ├── using-data-engineering-agent-skills/
-    ├── data-specification/
-    ├── pipeline-planning-and-task-breakdown/
-    ├── python-data-engineering-and-pipeline-packaging/
-    ├── data-quality-and-contract-testing/
-    ├── orchestration-and-backfills/
-    └── lineage-pii-and-governance/
-```
-
-See [data-engineering-agent-skills](https://github.com/vaquarkhan/data-engineering-agent-skills).
-
----
-
-## Entry points (CLI)
-
-| Command | Module | Purpose |
-|---------|--------|---------|
-| `cloud-de-agent` | `agent.orchestrator:main` | Print security posture + Bastion-wrapped MCP argv |
-| `python -m agent.bastion_proxy` | `agent/bastion_proxy.py` | Stdio proxy with `--` upstream command |
-| `python -m agent.mcp_server` | `agent/mcp_server/__main__.py` | Bastion-wrapped MCP tool server |
-| `mcp-test-harness stdio --suite security -- python -m agent.mcp_server` | `agent/harness_cli.py` | Security integration test suite |
-
----
-
-## Config files
-
-| File | Loaded by | Purpose |
-|------|-----------|---------|
-| `bastion.yaml` | `BastionGateway`, `bastion_wrapper`, `mcp-bastion validate` | PromptGuard, Presidio, rate limit, RBAC, cost |
-| `mcp-test.yaml` | `mcp-test` / `mcp-test-harness` | Server command, test dirs, schema validation |
-| `.aiv/config.yaml` | AIV CLI on PR | Logic density + design compliance |
-| `.env` (local only) | Runtime | `SKILLS_PATH`, `BASTION_CONFIG`, alert webhooks |
+| Command | Purpose |
+|---------|---------|
+| `cloud-security-agent` | Posture check + Bastion MCP argv |
+| `python examples/mock-posture-check/run_posture_check.py` | Mock multi-cloud demo |
+| `python scripts/validate-skills.py` | Validate all SKILL.md files |
+| `python evals/benchmark/skill_routing_benchmark.py` | Skill routing score |
 
 ---
 
@@ -131,10 +91,8 @@ See [data-engineering-agent-skills](https://github.com/vaquarkhan/data-engineeri
 
 | Doc | Topic |
 |-----|-------|
-| [architecture.md](architecture.md) | End-to-end data flow and threat model |
-| [getting-started.md](getting-started.md) | Bootstrap and first MCP connection |
-| [identity-layer.md](identity-layer.md) | Per-cloud identity managers |
-| [bastion-policy.md](bastion-policy.md) | `bastion.yaml` compliance tuning |
-| [testing.md](testing.md) | Unit + MCP harness commands |
-| [project-status.md](project-status.md) | Implemented vs planned |
-| [../AGENTS.md](../AGENTS.md) | Agent routing rules |
+| [architecture.md](architecture.md) | Threat model |
+| [testing.md](testing.md) | Local + CI test commands |
+| [project-status.md](project-status.md) | Feature list |
+| [../CONTRIBUTING.md](../CONTRIBUTING.md) | Development workflow |
+| [../SECURITY.md](../SECURITY.md) | Vulnerability disclosure |

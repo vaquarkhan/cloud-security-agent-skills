@@ -1,0 +1,23 @@
+id: gcp-agent-starter
+name: GCP Security Agent Starter
+version: "1.0.0"
+cloud: gcp
+description: Workload Identity agent on GKE/Cloud Run with SCC posture
+
+skills:
+  - using-cloud-security-agent-skills
+  - zero-trust-identity-and-secrets
+  - gcp-security-best-practices
+  - mcp-bastion-security-gateway
+
+preset: presets/gcp-security/PRESET.md
+checklist: skills/gcp-security-best-practices/references/end-to-end-checklist.md
+
+identity:
+  manager: GCPDefaultCredentialManager
+  pattern: Workload Identity Federation
+  forbidden: downloaded service account JSON keys
+
+bootstrap:
+  - pip install -e ".[gcp,bastion,test]"
+  - mcp-bastion validate --config bastion.yaml

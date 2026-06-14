@@ -4,9 +4,11 @@
 [![CI](https://github.com/vaquarkhan/cloud-security-agent-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/vaquarkhan/cloud-security-agent-skills/actions/workflows/ci.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](pyproject.toml)
 [![Skills](https://img.shields.io/badge/skills-14-orange.svg)](skills-index.md)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](VERSION)
+
 [![Zero Trust](https://img.shields.io/badge/zero--trust-identity-green.svg)](#identity)
 
-**Specialized multi-cloud security agent** — 14 local Agent Skills (AWS, Azure, GCP, OCI, IBM Bluemix, Alibaba, PCF/Tanzu Well-Architected), zero-trust identity, MCP-Bastion gateway, mcp-test-harness, and AIV PR gate. **No external skill repos.**
+**Version 0.1.0** — see [CHANGELOG.md](CHANGELOG.md) | [SECURITY.md](SECURITY.md) | [CONTRIBUTING.md](CONTRIBUTING.md) — 14 local Agent Skills (AWS, Azure, GCP, OCI, IBM Bluemix, Alibaba, PCF/Tanzu Well-Architected), zero-trust identity, MCP-Bastion gateway, mcp-test-harness, and AIV PR gate. **No external skill repos.**
 
 ---
 
@@ -64,12 +66,42 @@ cloud-security-agent-skills/
 ├── bastion.yaml                 # MCP-Bastion policy
 ├── tests/                       # unit + mcp-test-harness integration
 ├── .aiv/                        # AIV PR gate config
-├── registry/assets.json         # Skill index
-├── skills-index.md
+├── presets/                     # 8 cloud WAF/security presets
+├── starter-packs/               # Agent starter YAML bundles
+├── examples/mock-posture-check/ # Runnable demo
+├── scripts/                     # validate-skills.py, validate-assets.py
+├── evals/benchmark/             # Skill routing benchmark
+├── registry/                    # assets.json + provenance.yaml
+├── LICENSE / VERSION / CHANGELOG.md
 └── AGENTS.md                    # Agent routing (read first)
 ```
 
 Full map: [docs/folder-structure.md](docs/folder-structure.md)
+
+---
+
+## Governance and validation
+
+| Layer | File / command |
+|-------|----------------|
+| License | [LICENSE](LICENSE) (MIT) |
+| Version | [VERSION](VERSION), [CHANGELOG.md](CHANGELOG.md) |
+| Skill validator | `python scripts/validate-skills.py` |
+| Asset validator | `python scripts/validate-assets.py` |
+| Benchmark | `python evals/benchmark/skill_routing_benchmark.py` |
+| Provenance | [registry/provenance.yaml](registry/provenance.yaml) |
+| Security disclosure | [SECURITY.md](SECURITY.md) |
+| Pre-commit | `.pre-commit-config.yaml` |
+| Dependabot / CodeQL | `.github/dependabot.yml`, `codeql-analysis.yml` |
+
+---
+
+## Quick demo
+
+```bash
+python examples/mock-posture-check/run_posture_check.py
+python examples/mock-posture-check/run_posture_check.py --cloud aws --json
+```
 
 ---
 
@@ -104,10 +136,14 @@ See [skills-index.md](skills-index.md).
 
 ```bash
 pytest tests/unit/ -v
+python scripts/validate-skills.py
+python scripts/validate-assets.py
+python evals/benchmark/skill_routing_benchmark.py
 mcp-bastion validate --config bastion.yaml
 mcp-test --server-command "python -m agent.mcp_server"
-mcp-test-harness stdio --suite security -- python -m agent.mcp_server
 ```
+
+Local integration setup: [docs/testing.md](docs/testing.md)
 
 ---
 
@@ -119,7 +155,9 @@ mcp-test-harness stdio --suite security -- python -m agent.mcp_server
 | [skills-index.md](skills-index.md) | Full skill catalog |
 | [docs/folder-structure.md](docs/folder-structure.md) | Directory map |
 | [docs/architecture.md](docs/architecture.md) | Threat model |
-| [docs/getting-started.md](docs/getting-started.md) | Bootstrap |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Development workflow |
+| [SECURITY.md](SECURITY.md) | Vulnerability disclosure |
+| [SUPPORT.md](SUPPORT.md) | Help and contact |
 
 ---
 

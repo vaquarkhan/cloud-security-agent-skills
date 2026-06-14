@@ -1,0 +1,108 @@
+# SME provenance — reference checklists and framework mappings
+
+Tracks authoritative sources, review dates, and scope for checklist content in this repo.
+Agents and auditors should cite these when producing compliance evidence.
+
+schema_version: 1
+last_updated: "2026-06-14"
+
+frameworks:
+  aws_well_architected:
+    name: AWS Well-Architected Framework — Security Pillar
+    url: https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/welcome.html
+    version: "2024"
+    reviewed: "2026-06-14"
+    skills:
+      - aws-security-best-practices
+    checklists:
+      - skills/aws-security-best-practices/references/end-to-end-checklist.md
+
+  cis_aws:
+    name: CIS Amazon Web Services Foundations Benchmark
+    url: https://www.cisecurity.org/benchmark/amazon_web_services
+    version: "3.0"
+    reviewed: "2026-06-14"
+    skills:
+      - aws-security-best-practices
+
+  azure_waf:
+    name: Microsoft Azure Well-Architected Framework
+    url: https://learn.microsoft.com/en-us/azure/well-architected/
+    version: "2024"
+    reviewed: "2026-06-14"
+    skills:
+      - azure-security-best-practices
+    checklists:
+      - skills/azure-security-best-practices/references/end-to-end-checklist.md
+
+  gcp_architecture:
+    name: Google Cloud Architecture Framework
+    url: https://cloud.google.com/architecture/framework
+    version: "2024"
+    reviewed: "2026-06-14"
+    skills:
+      - gcp-security-best-practices
+    checklists:
+      - skills/gcp-security-best-practices/references/end-to-end-checklist.md
+
+  oci_best_practices:
+    name: Oracle Cloud Infrastructure Best Practices
+    url: https://docs.oracle.com/en/solutions/oci-best-practices/
+    version: "2024"
+    reviewed: "2026-06-14"
+    skills:
+      - oci-oracle-cloud-security
+    checklists:
+      - skills/oci-oracle-cloud-security/references/end-to-end-checklist.md
+
+  ibm_cloud_scc:
+    name: IBM Cloud Security and Compliance Center
+    url: https://www.ibm.com/products/security-and-compliance-center
+    version: "2024"
+    reviewed: "2026-06-14"
+    notes: "Includes legacy IBM Bluemix control mappings"
+    skills:
+      - ibm-cloud-security-best-practices
+    checklists:
+      - skills/ibm-cloud-security-best-practices/references/end-to-end-checklist.md
+
+  alibaba_waf:
+    name: Alibaba Cloud Well-Architected Framework
+    url: https://www.alibabacloud.com/help/en/well-architected
+    version: "2024"
+    reviewed: "2026-06-14"
+    skills:
+      - alibaba-cloud-security-best-practices
+    checklists:
+      - skills/alibaba-cloud-security-best-practices/references/end-to-end-checklist.md
+
+  tanzu_reference:
+    name: VMware Tanzu Reference Architecture + NIST CSF
+    url: https://docs.vmware.com/en/VMware-Tanzu/
+    version: "2024"
+    reviewed: "2026-06-14"
+    notes: "Pivotal Cloud Foundry (PCF) → Tanzu Application Service lineage"
+    skills:
+      - vmware-tanzu-pcf-security
+    checklists:
+      - skills/vmware-tanzu-pcf-security/references/end-to-end-checklist.md
+
+  cross_cloud_waf:
+    name: Cross-cloud Well-Architected pillar matrix
+    url: https://github.com/vaquarkhan/cloud-security-agent-skills/blob/main/skills/cloud-well-architected-frameworks/references/well-architected-pillar-matrix.md
+    reviewed: "2026-06-14"
+    skills:
+      - cloud-well-architected-frameworks
+
+zero_trust:
+  name: NIST SP 800-207 Zero Trust Architecture
+  url: https://csrc.nist.gov/publications/detail/sp/800-207/final
+  reviewed: "2026-06-14"
+  skills:
+    - zero-trust-identity-and-secrets
+    - multi-cloud-security-posture
+
+review_policy:
+  frequency: quarterly
+  owner: repository maintainers
+  next_review: "2026-09-14"

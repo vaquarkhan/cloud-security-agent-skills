@@ -1,5 +1,8 @@
 # AWS End-to-End Security Checklist
 
+> **Provenance:** CIS AWS Foundations v3.0 + AWS Well-Architected Security Pillar — reviewed 2026-06-14.  
+> Source registry: [registry/provenance.yaml](../../../registry/provenance.yaml)
+
 Use with `aws-security-best-practices` skill. Mark each item before sign-off.
 
 ## Governance

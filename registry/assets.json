@@ -1,8 +1,31 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "repo": "cloud-security-agent-skills",
+  "version": "0.1.0",
+  "version_file": "VERSION",
   "skills_root": "skills/",
-  "external_dependencies": [],
+  "skills_index": "skills-index.md",
+  "agents_entry": "AGENTS.md",
+  "external_dependencies": [
+    {
+      "name": "mcp-bastion-python",
+      "purpose": "MCP security gateway — PromptGuard, Presidio, rate limits",
+      "install": "pip install 'mcp-bastion-python[policy]>=1.0.12'",
+      "docs": "https://github.com/vaquarkhan/MCP-Bastion"
+    },
+    {
+      "name": "mcp-test-harness",
+      "purpose": "MCP protocol and adversarial security test suite",
+      "install": "pip install 'mcp-test-harness[mcplint]>=1.1.0'",
+      "docs": "https://github.com/vaquarkhan/mcp-test-harness"
+    },
+    {
+      "name": "aiv-gate",
+      "purpose": "PR integrity — logic density and design rules",
+      "install": "Maven: io.github.vaquarkhan:aiv-gate",
+      "docs": "https://github.com/vaquarkhan/aiv-integrity-gate"
+    }
+  ],
   "skill_groups": {
     "meta": [
       "using-cloud-security-agent-skills",
@@ -29,6 +52,51 @@
     "bastion_config": "bastion.yaml",
     "mcp_test_config": "mcp-test.yaml",
     "aiv_config": ".aiv/config.yaml",
-    "ci_workflow": ".github/workflows/ci.yml"
+    "aiv_design_rules": ".aiv/design-rules.yaml",
+    "ci_workflow": ".github/workflows/ci.yml",
+    "precommit_config": ".pre-commit-config.yaml"
+  },
+  "core_scripts": [
+    "scripts/validate-skills.py",
+    "scripts/validate-assets.py",
+    "bootstrap.sh",
+    "bootstrap.ps1"
+  ],
+  "lockfile": "requirements-lock.txt",
+  "presets": [
+    {"id": "aws-security", "path": "presets/aws-security/PRESET.md", "cloud": "aws"},
+    {"id": "azure-security", "path": "presets/azure-security/PRESET.md", "cloud": "azure"},
+    {"id": "gcp-security", "path": "presets/gcp-security/PRESET.md", "cloud": "gcp"},
+    {"id": "oci-security", "path": "presets/oci-security/PRESET.md", "cloud": "oci"},
+    {"id": "ibm-bluemix-security", "path": "presets/ibm-bluemix-security/PRESET.md", "cloud": "ibm"},
+    {"id": "alibaba-security", "path": "presets/alibaba-security/PRESET.md", "cloud": "alibaba"},
+    {"id": "tanzu-pcf-security", "path": "presets/tanzu-pcf-security/PRESET.md", "cloud": "pcf"},
+    {"id": "multi-cloud-hybrid", "path": "presets/multi-cloud-hybrid/PRESET.md", "cloud": "multi"}
+  ],
+  "starter_packs": [
+    {"id": "aws-agent-starter", "path": "starter-packs/aws-agent-starter.yaml"},
+    {"id": "azure-agent-starter", "path": "starter-packs/azure-agent-starter.yaml"},
+    {"id": "gcp-agent-starter", "path": "starter-packs/gcp-agent-starter.yaml"},
+    {"id": "multi-cloud-agent-starter", "path": "starter-packs/multi-cloud-agent-starter.yaml"}
+  ],
+  "examples": [
+    {"id": "mock-posture-check", "path": "examples/mock-posture-check/run_posture_check.py", "description": "Multi-cloud posture check on mock environment"}
+  ],
+  "references": [
+    {"id": "well-architected-matrix", "path": "skills/cloud-well-architected-frameworks/references/well-architected-pillar-matrix.md"},
+    {"id": "provenance", "path": "registry/provenance.yaml"}
+  ],
+  "evals": [
+    {"id": "skill-routing-benchmark", "path": "evals/benchmark/skill_routing_benchmark.py"}
+  ],
+  "install_surfaces": [
+    {"ide": "cursor", "paths": ["AGENTS.md", ".cursorrules", "skills/"]},
+    {"ide": "claude", "paths": ["CLAUDE.md", ".claude/commands/"]},
+    {"ide": "gemini", "paths": [".gemini/commands/"]},
+    {"ide": "kiro", "paths": [".kiro/steering/cloud-security-steering.md"]}
+  ],
+  "provenance": {
+    "registry_file": "registry/provenance.yaml",
+    "description": "SME source trail for reference checklists and framework mappings"
   }
 }

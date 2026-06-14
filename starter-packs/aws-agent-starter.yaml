@@ -1,0 +1,37 @@
+id: aws-agent-starter
+name: AWS Security Agent Starter
+version: "1.0.0"
+cloud: aws
+description: Zero-trust AWS agent with IRSA, Bastion MCP, and full security skill stack
+
+skills:
+  - using-cloud-security-agent-skills
+  - zero-trust-identity-and-secrets
+  - aws-security-best-practices
+  - cloud-well-architected-frameworks
+  - mcp-bastion-security-gateway
+  - mcp-security-testing-harness
+  - pr-integrity-aiv-gate
+
+preset: presets/aws-security/PRESET.md
+checklist: skills/aws-security-best-practices/references/end-to-end-checklist.md
+
+identity:
+  manager: AWSCredentialChainManager
+  pattern: IRSA or EC2 instance profile
+  forbidden: static AKIA access keys
+
+mcp_launch:
+  command: python
+  args:
+    - -m
+    - agent.bastion_proxy
+    - --
+    - python
+    - -m
+    - agent.mcp_server
+
+bootstrap:
+  - pip install -e ".[aws,bastion,test]"
+  - mcp-bastion validate --config bastion.yaml
+  - cloud-security-agent

@@ -22,6 +22,15 @@ jobs:
           pip install -e ".[test]"
           pip install -e ".[bastion]" || pip install "mcp-bastion-python[policy]>=1.0.12"
 
+      - name: Validate skills frontmatter and structure
+        run: python scripts/validate-skills.py
+
+      - name: Validate registry assets.json paths
+        run: python scripts/validate-assets.py
+
+      - name: Skill routing benchmark
+        run: python evals/benchmark/skill_routing_benchmark.py
+
       - name: Unit tests
         run: pytest tests/unit/ -v
 

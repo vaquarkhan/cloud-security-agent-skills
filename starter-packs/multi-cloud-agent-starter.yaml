@@ -1,0 +1,31 @@
+id: multi-cloud-agent-starter
+name: Multi-Cloud Security Agent Starter
+version: "1.0.0"
+cloud: multi
+description: Hybrid estate — all clouds, WAF matrix, mock posture demo
+
+skills:
+  - using-cloud-security-agent-skills
+  - cloud-well-architected-frameworks
+  - multi-cloud-security-posture
+  - zero-trust-identity-and-secrets
+  - mcp-bastion-security-gateway
+  - mcp-security-testing-harness
+  - pr-integrity-aiv-gate
+
+cloud_skills:
+  - aws-security-best-practices
+  - azure-security-best-practices
+  - gcp-security-best-practices
+  - oci-oracle-cloud-security
+  - ibm-cloud-security-best-practices
+  - alibaba-cloud-security-best-practices
+  - vmware-tanzu-pcf-security
+
+preset: presets/multi-cloud-hybrid/PRESET.md
+waf_matrix: skills/cloud-well-architected-frameworks/references/well-architected-pillar-matrix.md
+
+bootstrap:
+  - pip install -e ".[dev]"
+  - python examples/mock-posture-check/run_posture_check.py
+  - python evals/benchmark/skill_routing_benchmark.py

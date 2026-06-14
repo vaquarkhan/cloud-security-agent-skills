@@ -1,0 +1,18 @@
+repos:
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      dev-dependencies:
+        patterns:
+          - pytest*
+          - mcp*
+          - jsonschema
+          - httpx
+          - pyyaml
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

@@ -1,0 +1,23 @@
+id: azure-agent-starter
+name: Azure Security Agent Starter
+version: "1.0.0"
+cloud: azure
+description: Managed identity agent on Azure with Key Vault and Defender integration
+
+skills:
+  - using-cloud-security-agent-skills
+  - zero-trust-identity-and-secrets
+  - azure-security-best-practices
+  - mcp-bastion-security-gateway
+
+preset: presets/azure-security/PRESET.md
+checklist: skills/azure-security-best-practices/references/end-to-end-checklist.md
+
+identity:
+  manager: AzureDefaultCredentialManager
+  pattern: user-assigned managed identity
+  forbidden: client_secret on compute
+
+bootstrap:
+  - pip install -e ".[azure,bastion,test]"
+  - mcp-bastion validate --config bastion.yaml
