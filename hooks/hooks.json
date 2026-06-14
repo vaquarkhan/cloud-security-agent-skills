@@ -1,0 +1,14 @@
+{
+  "hooks": [
+    {
+      "event": "sessionStart",
+      "command": "hooks/session-start.sh",
+      "platforms": ["unix"]
+    },
+    {
+      "event": "sessionStart",
+      "command": "hooks/session-start.ps1",
+      "platforms": ["windows"]
+    }
+  ]
+}

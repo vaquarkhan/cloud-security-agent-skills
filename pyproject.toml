@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "cloud-security-agent-skills"
-version = "0.1.0"
+version = "0.2.0"
 description = "Zero-trust multi-cloud security agent with MCP Bastion, local security skills, and PR integrity gates"
 readme = "README.md"
 requires-python = ">=3.10"

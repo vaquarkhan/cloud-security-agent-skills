@@ -40,13 +40,22 @@ def collect_paths(data: dict) -> list[tuple[str, str]]:
         for p in item.get("paths", []):
             paths.append(("install_surfaces", p.rstrip("/")))
 
+    version_file = data.get("version_file")
+    if version_file:
+        paths.append(("version_file", version_file))
+    lockfile = data.get("lockfile")
+    if lockfile:
+        paths.append(("lockfile", lockfile))
+    install_manifest = data.get("install_manifest")
+    if install_manifest:
+        paths.append(("install_manifest", install_manifest))
+
     prov = data.get("provenance", {})
     if isinstance(prov.get("registry_file"), str):
         paths.append(("provenance", prov["registry_file"]))
 
-    version_file = data.get("version_file")
-    if version_file:
-        paths.append(("version_file", version_file))
+    for item in data.get("plugin_packages", []):
+        paths.append(("plugin_packages", item["path"]))
 
     return paths
 

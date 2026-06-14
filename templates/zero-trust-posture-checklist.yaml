@@ -1,0 +1,25 @@
+# Zero-trust posture checklist (agent deployment)
+
+Use before promoting any cloud security agent to production.
+
+identity:
+  - [ ] No static API keys in code, env, CI, or container images
+  - [ ] IdentityManager or cloud-native workload identity configured
+  - [ ] Vault/Secrets Manager for any human-provisioned config
+
+mcp:
+  - [ ] MCP client uses agent.bastion_proxy (not raw mcp_server)
+  - [ ] bastion.yaml validates in CI
+  - [ ] mcp-test security suite passes
+
+network:
+  - [ ] Egress allowlist to Bastion + required cloud APIs only
+  - [ ] No public endpoints on agent admin interfaces
+
+logging:
+  - [ ] Cloud audit trail enabled for agent IAM role
+  - [ ] Bastion audit pillar enabled
+
+ci:
+  - [ ] validate-skills.py passes
+  - [ ] AIV design rules pass on PRs

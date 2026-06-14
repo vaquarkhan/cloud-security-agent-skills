@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "cloud-security-agent": {
+      "command": "python",
+      "args": ["-m", "agent.bastion_proxy", "--", "python", "-m", "agent.mcp_server"]
+    }
+  }
+}

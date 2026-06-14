@@ -1,0 +1,46 @@
+<idea-plugin>
+    <id>com.cloudsecurity.skills</id>
+    <name>Cloud Security Agent Skills</name>
+    <vendor email="support@vaquarkhan.github.io" url="https://github.com/vaquarkhan/cloud-security-agent-skills">vaquarkhan</vendor>
+    <description><![CDATA[
+        Install multi-cloud zero-trust security skills for AWS, Azure, GCP, OCI, IBM Cloud (Bluemix),
+        Alibaba, and VMware Tanzu PCF — plus Bastion MCP templates, presets, and starter packs.
+        <ul>
+            <li>14 end-to-end security skills with Well-Architected framework mappings</li>
+            <li>Agent adapters for Cursor, Claude, Copilot, Gemini, and Kiro</li>
+            <li>Cloud presets and runnable mock posture examples</li>
+        </ul>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <actions>
+        <group id="CloudSecuritySkills.InstallGroup" text="Cloud Security Agent Skills" popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <action id="CloudSecuritySkills.InstallFullToolkit"
+                    class="com.cloudsecurity.skills.InstallFullToolkitAction"
+                    text="Install Full Toolkit"
+                    description="Install the full cloud security agent skills toolkit"/>
+            <action id="CloudSecuritySkills.InstallCorePack"
+                    class="com.cloudsecurity.skills.InstallCorePackAction"
+                    text="Install Core Pack"
+                    description="Install core skills and bastion config"/>
+            <action id="CloudSecuritySkills.InstallAgentAdapters"
+                    class="com.cloudsecurity.skills.InstallAgentAdaptersAction"
+                    text="Install Agent Adapters"
+                    description="Install Cursor, Claude, Copilot, Gemini, Kiro adapters"/>
+            <action id="CloudSecuritySkills.InstallStarterPack"
+                    class="com.cloudsecurity.skills.InstallStarterPackAction"
+                    text="Install Starter Pack"
+                    description="Install AWS, Azure, GCP, or Multi-Cloud starter pack"/>
+            <action id="CloudSecuritySkills.InstallMcpTemplates"
+                    class="com.cloudsecurity.skills.InstallMcpTemplatesAction"
+                    text="Install MCP Bastion Templates"
+                    description="Install Bastion-wrapped MCP client templates"/>
+            <action id="CloudSecuritySkills.ScaffoldRunnableExample"
+                    class="com.cloudsecurity.skills.ScaffoldRunnableExampleAction"
+                    text="Scaffold Mock Posture Example"
+                    description="Scaffold the mock multi-cloud posture check example"/>
+        </group>
+    </actions>
+</idea-plugin>

@@ -1,0 +1,147 @@
+{
+  "raw_base_url": "https://raw.githubusercontent.com/vaquarkhan/cloud-security-agent-skills/main",
+  "core_files": [
+    "AGENTS.md",
+    "CLAUDE.md",
+    "skills-index.md",
+    "VERSION",
+    "CHANGELOG.md",
+    "registry/assets.json",
+    "registry/provenance.yaml",
+    "bastion.yaml",
+    "mcp-test.yaml",
+    ".env.example",
+    ".cursorrules",
+    "requirements.txt",
+    "requirements-lock.txt",
+    "pyproject.toml",
+    "bootstrap.sh",
+    "bootstrap.ps1",
+    "docs/getting-started.md",
+    "docs/architecture.md",
+    "docs/testing.md",
+    "docs/cursor-setup.md",
+    "docs/vscode-setup.md",
+    "docs/jetbrains-setup.md",
+    "docs/plugin-publishing.md",
+    "docs/sme-review.md",
+    "scripts/validate-skills.py",
+    "scripts/validate-assets.py",
+    "scripts/validate-plugin-manifest.py",
+    "scripts/sync-install-manifest.py",
+    "hooks/README.md",
+    "hooks/hooks.json",
+    "hooks/session-start.sh",
+    "hooks/session-start.ps1",
+    "hooks/no-static-secrets-guard.sh",
+    "hooks/no-static-secrets-guard.ps1",
+    "templates/bastion-mcp-client.json",
+    "templates/zero-trust-posture-checklist.yaml",
+    "references/multi-cloud-control-matrix.md",
+    "mcp/README.md"
+  ],
+  "skill_files": [
+    "skills/alibaba-cloud-security-best-practices/SKILL.md",
+    "skills/alibaba-cloud-security-best-practices/references/end-to-end-checklist.md",
+    "skills/aws-security-best-practices/SKILL.md",
+    "skills/aws-security-best-practices/references/end-to-end-checklist.md",
+    "skills/azure-security-best-practices/SKILL.md",
+    "skills/azure-security-best-practices/references/end-to-end-checklist.md",
+    "skills/cloud-well-architected-frameworks/SKILL.md",
+    "skills/cloud-well-architected-frameworks/references/well-architected-pillar-matrix.md",
+    "skills/gcp-security-best-practices/SKILL.md",
+    "skills/gcp-security-best-practices/references/end-to-end-checklist.md",
+    "skills/ibm-cloud-security-best-practices/SKILL.md",
+    "skills/ibm-cloud-security-best-practices/references/end-to-end-checklist.md",
+    "skills/mcp-bastion-security-gateway/SKILL.md",
+    "skills/mcp-security-testing-harness/SKILL.md",
+    "skills/multi-cloud-security-posture/SKILL.md",
+    "skills/oci-oracle-cloud-security/SKILL.md",
+    "skills/oci-oracle-cloud-security/references/end-to-end-checklist.md",
+    "skills/pr-integrity-aiv-gate/SKILL.md",
+    "skills/using-cloud-security-agent-skills/SKILL.md",
+    "skills/vmware-tanzu-pcf-security/SKILL.md",
+    "skills/vmware-tanzu-pcf-security/references/end-to-end-checklist.md",
+    "skills/zero-trust-identity-and-secrets/SKILL.md"
+  ],
+  "agent_adapters": {
+    "Cursor": [
+      ".cursor/rules/00-cloud-security-core.mdc",
+      ".cursor/rules/10-zero-trust-identity.mdc",
+      ".cursor/rules/20-bastion-gateway-required.mdc",
+      ".cursor/rules/30-cloud-waf-routing.mdc"
+    ],
+    "Claude": [
+      ".claude/commands/posture-check.md",
+      ".claude/commands/aws-security-review.md",
+      "AGENTS.md",
+      "CLAUDE.md"
+    ],
+    "Copilot": [
+      ".github/copilot-instructions.md",
+      "AGENTS.md"
+    ],
+    "Gemini": [
+      ".gemini/commands/posture-check.md"
+    ],
+    "Kiro": [
+      ".kiro/steering/cloud-security-steering.md"
+    ]
+  },
+  "starter_packs": {
+    "AWS Agent": [
+      "starter-packs/aws-agent-starter.yaml",
+      "presets/aws-security/PRESET.md",
+      "skills/aws-security-best-practices/references/end-to-end-checklist.md",
+      "templates/bastion-mcp-client.json",
+      "AGENTS.md",
+      "skills-index.md"
+    ],
+    "Azure Agent": [
+      "starter-packs/azure-agent-starter.yaml",
+      "presets/azure-security/PRESET.md",
+      "skills/azure-security-best-practices/references/end-to-end-checklist.md",
+      "AGENTS.md",
+      "skills-index.md"
+    ],
+    "GCP Agent": [
+      "starter-packs/gcp-agent-starter.yaml",
+      "presets/gcp-security/PRESET.md",
+      "skills/gcp-security-best-practices/references/end-to-end-checklist.md",
+      "AGENTS.md",
+      "skills-index.md"
+    ],
+    "Multi-Cloud Hybrid": [
+      "starter-packs/multi-cloud-agent-starter.yaml",
+      "presets/multi-cloud-hybrid/PRESET.md",
+      "skills/cloud-well-architected-frameworks/references/well-architected-pillar-matrix.md",
+      "references/multi-cloud-control-matrix.md",
+      "AGENTS.md",
+      "skills-index.md"
+    ]
+  },
+  "mcp_templates": {
+    "Bastion Gateway": [
+      "mcp/cloud-security-agent.mcp.json",
+      "templates/bastion-mcp-client.json",
+      "bastion.yaml"
+    ]
+  },
+  "runnable_examples": {
+    "Mock Posture Check": [
+      "examples/mock-posture-check/README.md",
+      "examples/mock-posture-check/run_posture_check.py",
+      "scripts/validate-skills.py"
+    ]
+  },
+  "presets": [
+    "presets/aws-security/PRESET.md",
+    "presets/azure-security/PRESET.md",
+    "presets/gcp-security/PRESET.md",
+    "presets/oci-security/PRESET.md",
+    "presets/ibm-bluemix-security/PRESET.md",
+    "presets/alibaba-security/PRESET.md",
+    "presets/tanzu-pcf-security/PRESET.md",
+    "presets/multi-cloud-hybrid/PRESET.md"
+  ]
+}

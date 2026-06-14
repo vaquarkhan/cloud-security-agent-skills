@@ -1,0 +1,87 @@
+{
+  "name": "cloud-security-agent-skills",
+  "displayName": "Cloud Security Agent Skills",
+  "description": "Install multi-cloud zero-trust security skills (AWS, Azure, GCP, OCI, IBM Bluemix, Alibaba, Tanzu PCF), Well-Architected frameworks, Bastion MCP gateway templates, presets, and starter packs into VS Code, Cursor, or Copilot workspaces.",
+  "version": "0.2.0",
+  "publisher": "vaquarkhan",
+  "license": "MIT",
+  "homepage": "https://github.com/vaquarkhan/cloud-security-agent-skills",
+  "bugs": {
+    "url": "https://github.com/vaquarkhan/cloud-security-agent-skills/issues"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "extensionKind": ["workspace"],
+  "categories": ["Other"],
+  "galleryBanner": {
+    "color": "#0D1B2A",
+    "theme": "dark"
+  },
+  "keywords": [
+    "cloud-security",
+    "zero-trust",
+    "aws",
+    "azure",
+    "gcp",
+    "oci",
+    "ibm",
+    "bluemix",
+    "alibaba",
+    "pcf",
+    "tanzu",
+    "well-architected",
+    "mcp",
+    "bastion",
+    "iam",
+    "kms",
+    "agent-skills"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vaquarkhan/cloud-security-agent-skills.git"
+  },
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cloudSecurityAgentSkills.installFullToolkit",
+        "title": "Cloud Security Agent Skills: Install Full Toolkit"
+      },
+      {
+        "command": "cloudSecurityAgentSkills.installCorePack",
+        "title": "Cloud Security Agent Skills: Install Core Pack"
+      },
+      {
+        "command": "cloudSecurityAgentSkills.installAgentAdapters",
+        "title": "Cloud Security Agent Skills: Install Agent Adapters"
+      },
+      {
+        "command": "cloudSecurityAgentSkills.installStarterPack",
+        "title": "Cloud Security Agent Skills: Install Starter Pack"
+      },
+      {
+        "command": "cloudSecurityAgentSkills.installCloudPreset",
+        "title": "Cloud Security Agent Skills: Install Cloud Preset"
+      },
+      {
+        "command": "cloudSecurityAgentSkills.installMcpTemplates",
+        "title": "Cloud Security Agent Skills: Install MCP Bastion Templates"
+      },
+      {
+        "command": "cloudSecurityAgentSkills.scaffoldRunnableExample",
+        "title": "Cloud Security Agent Skills: Scaffold Mock Posture Example"
+      }
+    ],
+    "configuration": {
+      "title": "Cloud Security Agent Skills",
+      "properties": {
+        "cloudSecurityAgentSkills.rawBaseUrl": {
+          "type": "string",
+          "default": "https://raw.githubusercontent.com/vaquarkhan/cloud-security-agent-skills/main",
+          "description": "Raw GitHub base URL when local extension assets are unavailable."
+        }
+      }
+    }
+  }
+}

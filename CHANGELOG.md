@@ -5,6 +5,22 @@ All notable changes to **cloud-security-agent-skills** are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-06-14
+
+### Added
+
+- **VS Code extension** (`vscode-extension/`) — install toolkit, starter packs, presets, MCP Bastion templates
+- **JetBrains plugin** (`jetbrains-plugin/`) — Tools menu installers for IntelliJ-family IDEs
+- **registry/install-manifest.json** — plugin manifest with sync script
+- **scripts/validate-plugin-manifest.py**, **scripts/install.sh** — family-parity packaging
+- **.cursor/rules/** — 4 MDC rules (core, zero-trust, Bastion, WAF routing)
+- **.github/copilot-instructions.md** — Copilot routing
+- **hooks/** — session start + static-secret guard
+- **templates/**, **references/**, **mcp/** — Bastion MCP client templates
+- **docs/** — cursor, vscode, jetbrains, plugin-publishing, sme-review setup guides
+- **Makefile** — validate, demo, plugin-sync targets
+- **README** — compliance-family layout with badges, presets, plugin install sections
+
 ## [0.1.0] - 2026-06-14
 
 ### Added

@@ -18,3 +18,8 @@ repos:
         entry: python scripts/validate-assets.py
         language: system
         pass_filenames: false
+      - id: validate-plugin-manifest
+        name: validate-plugin-manifest
+        entry: python scripts/validate-plugin-manifest.py
+        language: system
+        pass_filenames: false

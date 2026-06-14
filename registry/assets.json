@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "repo": "cloud-security-agent-skills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "version_file": "VERSION",
   "skills_root": "skills/",
   "skills_index": "skills-index.md",
@@ -63,6 +63,11 @@
     "bootstrap.ps1"
   ],
   "lockfile": "requirements-lock.txt",
+  "install_manifest": "registry/install-manifest.json",
+  "plugin_packages": [
+    {"id": "vscode-extension", "path": "vscode-extension/package.json"},
+    {"id": "jetbrains-plugin", "path": "jetbrains-plugin/build.gradle.kts"}
+  ],
   "presets": [
     {"id": "aws-security", "path": "presets/aws-security/PRESET.md", "cloud": "aws"},
     {"id": "azure-security", "path": "presets/azure-security/PRESET.md", "cloud": "azure"},
@@ -90,10 +95,12 @@
     {"id": "skill-routing-benchmark", "path": "evals/benchmark/skill_routing_benchmark.py"}
   ],
   "install_surfaces": [
-    {"ide": "cursor", "paths": ["AGENTS.md", ".cursorrules", "skills/"]},
+    {"ide": "cursor", "paths": ["AGENTS.md", ".cursor/rules/", "skills/"]},
     {"ide": "claude", "paths": ["CLAUDE.md", ".claude/commands/"]},
     {"ide": "gemini", "paths": [".gemini/commands/"]},
-    {"ide": "kiro", "paths": [".kiro/steering/cloud-security-steering.md"]}
+    {"ide": "kiro", "paths": [".kiro/steering/cloud-security-steering.md"]},
+    {"ide": "vscode", "paths": ["vscode-extension/", ".github/copilot-instructions.md"]},
+    {"ide": "jetbrains", "paths": ["jetbrains-plugin/"]}
   ],
   "provenance": {
     "registry_file": "registry/provenance.yaml",
