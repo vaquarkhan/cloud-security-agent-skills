@@ -1,0 +1,22 @@
+# Core runtime
+mcp>=1.0.0
+anyio>=4.0.0
+pyyaml>=6.0
+httpx>=0.27.0
+
+# Security gateway
+mcp-bastion-python[policy]>=1.0.12
+
+# Multi-cloud identity (install only what your deployment needs)
+boto3>=1.34.0
+azure-identity>=1.16.0
+google-auth>=2.29.0
+oci>=2.126.0
+ibm-cloud-sdk-core>=3.20.0
+alibabacloud_credentials>=0.3.0
+
+# Testing
+mcp-test-harness[mcplint]>=1.1.0
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+jsonschema>=4.0.0

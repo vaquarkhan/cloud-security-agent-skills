@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+*.log
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Test and coverage artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+test-results/
+.mcp_test_harness/
+*.sarif
+
+# AIV local reports (config in .aiv/ is committed)
+.aiv-report/
+aiv-report.txt
+aiv-report.json
+
+# External / vendored skill repos
+skills-cache/
+vendor/
+
+# Cursor IDE — local only (not project source)
+.cursor/
+.cursor/plans/
+.cursor/chat/
+.cursor/projects/
+*.cursor-plan.md
+.cursor-settings.json
+
+# Other IDEs and OS
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Build / temp / backup
+*.tmp
+*.bak
+*.orig
+.cache/

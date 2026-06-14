@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cloud-security-agent-skills"
+version = "0.1.0"
+description = "Zero-trust multi-cloud security agent with MCP Bastion, local security skills, and PR integrity gates"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Vaquar Khan" }]
+keywords = ["mcp", "security", "zero-trust", "multi-cloud", "aws", "azure", "gcp", "oci"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies = [
+    "mcp>=1.0.0",
+    "anyio>=4.0.0",
+    "pyyaml>=6.0",
+    "httpx>=0.27.0",
+]
+
+[project.optional-dependencies]
+aws = ["boto3>=1.34.0"]
+azure = ["azure-identity>=1.16.0"]
+gcp = ["google-auth>=2.29.0"]
+oci = ["oci>=2.126.0"]
+ibm = ["ibm-cloud-sdk-core>=3.20.0"]
+alibaba = ["alibabacloud_credentials>=0.3.0"]
+bastion = [
+    "mcp-bastion-python[policy]>=1.0.12",
+]
+skills = [
+    "PyYAML>=6.0",
+]
+test = [
+    "mcp-test-harness[mcplint]>=1.1.0",
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "jsonschema>=4.0.0",
+]
+dev = [
+    "cloud-security-agent-skills[aws,azure,gcp,oci,ibm,alibaba,bastion,test,skills]",
+]
+
+[project.scripts]
+cloud-security-agent = "agent.orchestrator:main"
+cloud-de-agent = "agent.orchestrator:main"
+mcp-test-harness = "agent.harness_cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["security", "agent"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+addopts = "-p no:logfire"
+markers = [
+    "security: security and adversarial MCP tests (Bastion gateway)",
+    "protocol: MCP protocol conformance tests",
+]
+testpaths = ["tests/unit", "tests/integration"]
+
+[tool.coverage.run]
+source = ["security", "agent"]

@@ -1,0 +1,15 @@
+server:
+  command: python -m agent.mcp_server
+  transport: stdio
+
+test:
+  dirs:
+    - tests/integration/
+  timeout: 120
+  parallel: false
+
+schema_validation: true
+
+report:
+  format: json
+  output: test-results/mcp-test-report.json

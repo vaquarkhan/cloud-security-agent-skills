@@ -1,0 +1,106 @@
+# MCP-Bastion policy-as-code — Cloud DE Agent security gateway
+# Review PII entity coverage with your compliance team before production.
+# Validate: mcp-bastion validate --config bastion.yaml
+
+prompt_guard:
+  enabled: true
+
+pii:
+  enabled: true
+  # Enterprise compliance: redact regulated and sensitive identifiers before LLM context.
+  # Presidio entity types — extend per GDPR/HIPAA/PCI-DSS scope.
+  entities:
+    - CREDIT_CARD
+    - CRYPTO
+    - DATE_TIME
+    - EMAIL_ADDRESS
+    - IBAN_CODE
+    - IP_ADDRESS
+    - LOCATION
+    - MEDICAL_LICENSE
+    - NRP
+    - PERSON
+    - PHONE_NUMBER
+    - US_BANK_NUMBER
+    - US_DRIVER_LICENSE
+    - US_ITIN
+    - US_PASSPORT
+    - US_SSN
+    - UK_NHS
+  redaction_mode: replace
+  replacement_text: "<REDACTED_PII>"
+
+rate_limit:
+  enabled: true
+  max_iterations: 15
+  timeout_seconds: 120
+  token_budget: 50000
+  # Stateful cycle detection: identical tool+args repeats trigger termination
+  cycle_detection: true
+  max_identical_calls: 5
+
+circuit_breaker:
+  enabled: true
+
+content_filter:
+  enabled: true
+  block_code_execution: true
+  block_file_paths: true
+  block_urls: true
+  allowlist_patterns: []
+  denylist_patterns:
+    - "(?i)password\\s*[:=]"
+    - "(?i)api[_-]?key\\s*[:=]"
+    - "(?i)secret\\s*[:=]"
+    - "(?i)bearer\\s+[a-z0-9\\-_.]+"
+    - "(?i)aws[_-]?secret"
+    - "(?i)private[_-]?key"
+    - "(?i)BEGIN (RSA |OPENSSH )?PRIVATE KEY"
+    - "(?i)jdbc:[a-z]+://[^\\s]+:[^\\s]+@"
+    - "(?i)ignore (all )?(previous|prior) instructions"
+    - "(?i)jailbreak"
+    - "(?i)DAN mode"
+
+rbac:
+  enabled: true
+  permissions:
+    default: ["echo_security_context", "assess_cloud_posture", "validate_security_controls"]
+    operator: ["echo_security_context", "assess_cloud_posture", "validate_security_controls"]
+    admin: ["*"]
+
+schema_validation:
+  enabled: true
+
+replay_guard:
+  enabled: true
+  require_nonce: false
+
+cost_tracker:
+  enabled: true
+  max_cost_per_session: 1.00
+  max_cost_per_day: 25.00
+
+semantic_cache:
+  enabled: false
+
+audit:
+  enabled: true
+
+alerts:
+  slack_webhook: ${SLACK_WEBHOOK_URL}
+  webhook_url: ${BASTION_WEBHOOK_URL}
+  webhooks: []
+  retry_attempts: 3
+  retry_backoff_seconds: 0.25
+  retry_backoff_max_seconds: 2.0
+  timeout_seconds: 5.0
+  alert_on:
+    - injection
+    - rate_limit
+    - cost
+    - pii
+    - cycle
+
+hot_reload:
+  enabled: true
+  poll_seconds: 2.0

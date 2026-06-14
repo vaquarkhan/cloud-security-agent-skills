@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "repo": "cloud-security-agent-skills",
+  "skills_root": "skills/",
+  "external_dependencies": [],
+  "skill_groups": {
+    "meta": [
+      "using-cloud-security-agent-skills",
+      "cloud-well-architected-frameworks",
+      "zero-trust-identity-and-secrets",
+      "multi-cloud-security-posture"
+    ],
+    "cloud": [
+      "aws-security-best-practices",
+      "azure-security-best-practices",
+      "gcp-security-best-practices",
+      "oci-oracle-cloud-security",
+      "ibm-cloud-security-best-practices",
+      "alibaba-cloud-security-best-practices",
+      "vmware-tanzu-pcf-security"
+    ],
+    "tooling": [
+      "mcp-bastion-security-gateway",
+      "mcp-security-testing-harness",
+      "pr-integrity-aiv-gate"
+    ]
+  },
+  "tooling": {
+    "bastion_config": "bastion.yaml",
+    "mcp_test_config": "mcp-test.yaml",
+    "aiv_config": ".aiv/config.yaml",
+    "ci_workflow": ".github/workflows/ci.yml"
+  }
+}

@@ -1,0 +1,41 @@
+# Cloud Security Agent — Cursor AI Rules
+# Zero-trust multi-cloud Data Engineering Agent
+
+## ABSOLUTE PROHIBITION: Static Secrets
+
+NEVER generate code that:
+- Accepts, reads, stores, or transmits raw API keys, passwords, client secrets, or long-lived tokens
+- Uses hard-coded credentials in source files, config files committed to git, or environment variable defaults with secret values
+- Implements `os.getenv("API_KEY")` or similar patterns where the agent suggests embedding a default secret value
+- Creates `.env` files containing real credentials
+- Adds `password=`, `api_key=`, `secret=`, or `token=` parameters with literal string values in function signatures or dataclasses
+- Uses `boto3.client(..., aws_access_key_id=..., aws_secret_access_key=...)`
+- Uses `DefaultAzureCredential` with client_secret passed in code (only ambient/workload identity)
+- Bypasses the Bastion gateway to connect directly to MCP servers
+
+ALWAYS:
+- Route MCP connections through `BastionGateway` / `agent.bastion_proxy` — never direct upstream MCP URLs
+- Use cloud provider default credential chains (`IdentityManager` subclasses in `security/`)
+- Load secrets from platform-injected bindings (VCAP_SERVICES, workload identity, vault references)
+- Reference `bastion.yaml` for PII redaction and prompt injection defense
+- Load workflow skills from `data-engineering-agent-skills` via `SkillsLoader`, not ad-hoc prompts
+
+## Architecture Constraints
+
+- All identity flows go through `security.introspection.get_identity_manager()`
+- New cloud providers must extend `IdentityManager` in `security/base.py`
+- MCP tool servers must use `build_middleware_from_config()` or `secure_fastmcp()`
+- Tests must use `mcp-test-harness` / `mcp-test` against STDIO servers
+- PRs must pass AIV gate checks (`.aiv/config.yaml`)
+
+## Code Style
+
+- Match existing patterns in `security/` and `agent/`
+- Minimal scope; no over-engineering
+- Optional cloud SDK imports must be lazy with clear install extras
+
+## When Adding MCP Tools
+
+- Register tools on Bastion-wrapped servers only
+- Never return unredacted PII in tool responses (Presidio handles outbound)
+- Include JSON schemas when `schema_validation` is enabled

@@ -1,0 +1,36 @@
+constraints:
+  - id: no-static-api-keys
+    keywords:
+      - api_key
+      - apikey
+      - secret_key
+      - client_secret
+      - password
+    forbidden_calls:
+      - os.environ.get("API_KEY"
+      - os.getenv("API_KEY"
+      - aws_access_key_id=
+      - aws_secret_access_key=
+    required_calls: []
+
+  - id: no-direct-mcp-bypass
+    keywords:
+      - mcp_server
+      - StdioServerParameters
+    forbidden_calls:
+      - connect_direct
+    required_calls: []
+
+  - id: require-identity-manager
+    keywords:
+      - credentials
+      - authenticate
+    forbidden_calls:
+      - hardcoded_token
+    required_calls: []
+
+  - id: bastion-yaml-valid
+    keywords:
+      - bastion.yaml
+    forbidden_calls: []
+    required_calls: []
