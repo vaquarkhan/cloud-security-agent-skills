@@ -1,22 +1,21 @@
-# Pinned core dependencies for reproducible installs (v0.1.0)
+# Pinned core dependencies for reproducible installs (v0.2.0)
+# Generated from: pip install -e ".[test]" && pip freeze (core packages)
 # Install: pip install -r requirements-lock.txt
 # Full dev: pip install -e ".[dev]"
 
-mcp>=1.0.0,<2.0.0
-anyio>=4.0.0,<5.0.0
-pyyaml>=6.0,<7.0
-httpx>=0.27.0,<1.0.0
+mcp==1.27.2
+anyio==4.13.0
+PyYAML==6.0.3
+httpx==0.28.1
 
 # Test + validation
-pytest>=7.0.0,<9.0.0
-pytest-asyncio>=0.21.0,<1.0.0
-jsonschema>=4.0.0,<5.0.0
-mcp-test-harness[mcplint]>=1.1.0,<2.0.0
+pytest==9.0.2
+pytest-asyncio==1.3.0
+jsonschema==4.26.0
+mcp-test-harness==1.1.0
+pluggy==1.6.0
 
-# Bastion (optional — integration tests)
-mcp-bastion-python[policy]>=1.0.12,<2.0.0
+# Bastion (optional — integration tests; install separately if needed)
+# mcp-bastion-python[policy]>=1.0.12
 
-# Cloud SDKs (optional extras — install as needed)
-boto3>=1.34.0,<2.0.0
-azure-identity>=1.16.0,<2.0.0
-google-auth>=2.29.0,<3.0.0
+# Cloud SDKs (optional extras — install via pip install -e ".[aws,azure,gcp,...]")
