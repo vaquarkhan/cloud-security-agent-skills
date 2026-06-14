@@ -34,8 +34,10 @@ aiv-report.json
 skills-cache/
 vendor/
 
-# Cursor IDE — local only (not project source)
+# Cursor IDE — local only (rules/ is committed for install)
 .cursor/
+!.cursor/rules/
+!.cursor/rules/**
 .cursor/plans/
 .cursor/chat/
 .cursor/projects/
